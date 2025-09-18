@@ -1,0 +1,25 @@
+{
+  "name": "maid-service-platform",
+  "version": "1.0.0",
+  "description": "Full-stack maid service marketplace platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "install-deps": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "maid-service",
+    "marketplace",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "CleanConnect Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
