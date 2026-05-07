@@ -39,21 +39,31 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = async (email, password) => {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
-    const { user: u, token: t } = res.data.data;
-    setUser(u);
-    setToken(t);
-    localStorage.setItem('token', t);
-    return { success: true, user: u };
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
+      const { user: u, token: t } = res.data.data;
+      setUser(u);
+      setToken(t);
+      localStorage.setItem('token', t);
+      return { success: true, user: u };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Login failed';
+      return { success: false, message };
+    }
   };
 
   const register = async (payload) => {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, payload);
-    const { user: u, token: t } = res.data.data;
-    setUser(u);
-    setToken(t);
-    localStorage.setItem('token', t);
-    return { success: true, user: u };
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, payload);
+      const { user: u, token: t } = res.data.data;
+      setUser(u);
+      setToken(t);
+      localStorage.setItem('token', t);
+      return { success: true, user: u };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Registration failed';
+      return { success: false, message };
+    }
   };
 
   const updateProfile = async (profile) => {

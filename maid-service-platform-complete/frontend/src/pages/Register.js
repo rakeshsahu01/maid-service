@@ -23,9 +23,13 @@ const Register = () => {
     setBusy(true);
     try {
       const payload = { name: form.name, email: form.email, phone: form.phone, role: form.role, password: form.password };
-      const res = await register(payload);
-      const dest = res.user.role === 'customer' ? '/customer/dashboard' : '/maid/dashboard';
-      navigate(dest);
+      const result = await register(payload);
+      if (result.success) {
+        const dest = result.user.role === 'customer' ? '/customer/dashboard' : '/maid/dashboard';
+        navigate(dest);
+      } else {
+        setError(result.message);
+      }
     } catch (err) {
       setError(err?.response?.data?.message || 'Registration failed');
     } finally {
