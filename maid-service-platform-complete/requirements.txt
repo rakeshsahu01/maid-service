@@ -1,2 +1,0 @@
-# Empty requirements file - Node.js backend doesn't need Python dependencies
-# Render will install Node packages via npm (see Root Directory setting)

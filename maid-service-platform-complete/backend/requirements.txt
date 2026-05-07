@@ -1,2 +1,0 @@
-# Empty requirements file - using Node.js/npm instead of Python/pip
-# This file is kept to satisfy Render's Python runtime detection
